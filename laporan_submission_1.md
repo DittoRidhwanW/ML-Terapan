@@ -1,8 +1,18 @@
-# Laporan Proyek Machine Learning - Nama Anda
+# Laporan Proyek Machine Learning - Ditto Ridhwan Wibowo
 
 ## Domain Proyek
 
-Pada bagian ini, kamu perlu menuliskan latar belakang yang relevan dengan proyek yang diangkat.
+    Kesehatan mental merupakan aspek penting dalam menunjang produktivitas dan kualitas hidup individu, terutama di lingkungan kerja. Gangguan mental seperti depresi, stres, dan kecemasan telah menjadi penyebab utama berkurangnya produktivitas dan meningkatnya angka absensi di tempat kerja. Menurut WHO, gangguan kesehatan mental menyebabkan kerugian ekonomi global sebesar $1 triliun setiap tahunnya akibat kehilangan produktivitas [1].
+    Seiring berkembangnya teknologi, pendekatan data-driven seperti machine learning menjadi solusi potensial dalam mendeteksi kesehatan mental secara dini. Model klasifikasi berbasis data survei dapat membantu organisasi dalam mengidentifikasi individu yang berisiko mengalami gangguan mental, sehingga memungkinkan intervensi lebih cepat dan tepat [2].
+    Studi terdahulu menunjukkan bahwa faktor-faktor seperti jenis kelamin, usia, riwayat keluarga, dukungan perusahaan, dan stigma terhadap isu kesehatan mental sangat memengaruhi keputusan seseorang dalam mencari bantuan [3], [4]. Selain itu, persepsi terhadap kerahasiaan data dan kenyamanan saat membicarakan isu ini juga merupakan faktor penting [5].
+    Dataset  yang dianalisis dalam proyek ini mencerminkan berbagai kondisi sosial dan struktural yang memengaruhi kesehatan mental. Melalui pendekatan klasifikasi, diharapkan dapat ditemukan pola-pola prediktif yang mendukung pengambilan keputusan berbasis data dalam manajemen sumber daya manusia.
+
+### Referensi
+[1] V. Patel, A. J. Flisher, S. Hetrick, and P. McGorry, “Mental health of young people: a global public-health challenge,” The Lancet, vol. 369, no. 9569, pp. 1302–1313, 2007.
+[2] C. R. Clough, M. O. Casey, and L. P. Zhan, “Predicting mental health from social media data using machine learning: A review,” ACM Computing Surveys (CSUR), vol. 54, no. 4, pp. 1–36, 2021.
+[3] A. Gulliver, K. M. Griffiths, and H. Christensen, “Perceived barriers and facilitators to mental health help-seeking in young people: a systematic review,” BMC Psychiatry, vol. 10, no. 1, pp. 1–9, 2010.
+[4] D. Rickwood, F. P. Deane, C. Wilson, and J. Ciarrochi, “Young people’s help-seeking for mental health problems,” Australian e-Journal for the Advancement of Mental Health, vol. 4, no. 3, pp. 218–251, 2005.
+[5] L. Clement et al., “What is the impact of mental health-related stigma on help-seeking? A systematic review of quantitative and qualitative studies,” Psychological Medicine, vol. 45, no. 1, pp. 11–27, 2015.
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Jelaskan mengapa dan bagaimana masalah tersebut harus diselesaikan
