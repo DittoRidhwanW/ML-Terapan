@@ -2,23 +2,26 @@
 
 ## Domain Proyek
 
-    Kesehatan mental merupakan aspek penting dalam menunjang produktivitas dan kualitas hidup individu, terutama di lingkungan kerja. Gangguan mental seperti depresi, stres, dan kecemasan telah menjadi penyebab utama berkurangnya produktivitas dan meningkatnya angka absensi di tempat kerja. Menurut WHO, gangguan kesehatan mental menyebabkan kerugian ekonomi global sebesar $1 triliun setiap tahunnya akibat kehilangan produktivitas [1].
-    Seiring berkembangnya teknologi, pendekatan data-driven seperti machine learning menjadi solusi potensial dalam mendeteksi kesehatan mental secara dini. Model klasifikasi berbasis data survei dapat membantu organisasi dalam mengidentifikasi individu yang berisiko mengalami gangguan mental, sehingga memungkinkan intervensi lebih cepat dan tepat [2].
-    Studi terdahulu menunjukkan bahwa faktor-faktor seperti jenis kelamin, usia, riwayat keluarga, dukungan perusahaan, dan stigma terhadap isu kesehatan mental sangat memengaruhi keputusan seseorang dalam mencari bantuan [3], [4]. Selain itu, persepsi terhadap kerahasiaan data dan kenyamanan saat membicarakan isu ini juga merupakan faktor penting [5].
-    Dataset  yang dianalisis dalam proyek ini mencerminkan berbagai kondisi sosial dan struktural yang memengaruhi kesehatan mental. Melalui pendekatan klasifikasi, diharapkan dapat ditemukan pola-pola prediktif yang mendukung pengambilan keputusan berbasis data dalam manajemen sumber daya manusia.
+    Kesehatan mental telah menjadi topik yang semakin penting dalam berbagai aspek kehidupan, terutama setelah pandemi COVID-19 yang berdampak besar terhadap kesejahteraan psikologis masyarakat global. Gangguan seperti kecemasan, depresi, dan stres kini tidak hanya dialami oleh pekerja formal, tetapi juga oleh pelajar, pelaku usaha, ibu rumah tangga, hingga kalangan profesional. Tekanan sosial, ketidakpastian ekonomi, dan kurangnya akses terhadap dukungan psikologis menjadi faktor utama yang memperparah kondisi ini [1].
+    
+   Menurut studi global oleh Santomauro et al. (2021), terdapat peningkatan signifikan dalam prevalensi gangguan kecemasan (26%) dan depresi mayor (28%) pada tahun pertama pandemi [2]. Hal ini menunjukkan kebutuhan mendesak akan pendekatan yang dapat mendeteksi potensi gangguan mental secara dini dan akurat.
+    
+    Pendekatan berbasis machine learning menawarkan potensi besar untuk menyaring dan menganalisis data kesehatan mental secara otomatis. Model klasifikasi seperti data survei memungkinkan prediksi status kesehatan mental individu berdasarkan faktor-faktor seperti demografi, pekerjaan, dukungan sosial, dan persepsi pribadi terhadap kesehatan mental [3]. Ini sangat berguna untuk memperluas cakupan intervensi kepada populasi yang lebih luas, tidak hanya terbatas pada lingkungan kerja.
 
+    Beberapa studi menunjukkan bahwa faktor-faktor seperti jenis kelamin, usia, riwayat keluarga, dan kenyamanan berbicara mengenai kesehatan mental berperan penting dalam perilaku pencarian bantuan psikologis [4], [5]. Melalui pemodelan machine learning, kita tidak hanya dapat melakukan klasifikasi, tetapi juga mengidentifikasi fitur-fitur yang paling relevan untuk membantu dalam desain kebijakan dan intervensi kesehatan mental.
+    
+    Dataset  yang dianalisis dalam proyek ini mencerminkan berbagai kondisi sosial dan struktural yang memengaruhi kesehatan mental. Melalui pendekatan klasifikasi, diharapkan dapat ditemukan pola-pola prediktif yang mendukung pengambilan keputusan dalam kebutuhan untuk cek kesehatan mental.
+    
 ### Referensi
-[1] V. Patel, A. J. Flisher, S. Hetrick, and P. McGorry, “Mental health of young people: a global public-health challenge,” The Lancet, vol. 369, no. 9569, pp. 1302–1313, 2007.
-[2] C. R. Clough, M. O. Casey, and L. P. Zhan, “Predicting mental health from social media data using machine learning: A review,” ACM Computing Surveys (CSUR), vol. 54, no. 4, pp. 1–36, 2021.
-[3] A. Gulliver, K. M. Griffiths, and H. Christensen, “Perceived barriers and facilitators to mental health help-seeking in young people: a systematic review,” BMC Psychiatry, vol. 10, no. 1, pp. 1–9, 2010.
-[4] D. Rickwood, F. P. Deane, C. Wilson, and J. Ciarrochi, “Young people’s help-seeking for mental health problems,” Australian e-Journal for the Advancement of Mental Health, vol. 4, no. 3, pp. 218–251, 2005.
-[5] L. Clement et al., “What is the impact of mental health-related stigma on help-seeking? A systematic review of quantitative and qualitative studies,” Psychological Medicine, vol. 45, no. 1, pp. 11–27, 2015.
+[1] S. Vindegaard and M. Benros, “COVID-19 pandemic and mental health consequences: Systematic review of the current evidence,” Brain, Behavior, and Immunity, vol. 89, pp. 531–542, Jul. 2020.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Jelaskan mengapa dan bagaimana masalah tersebut harus diselesaikan
-- Menyertakan hasil riset terkait atau referensi. Referensi yang diberikan harus berasal dari sumber yang kredibel dan author yang jelas.
-- Format Referensi dapat mengacu pada penulisan sitasi [IEEE](https://journals.ieeeauthorcenter.ieee.org/wp-content/uploads/sites/7/IEEE_Reference_Guide.pdf), [APA](https://www.mendeley.com/guides/apa-citation-guide/) atau secara umum seperti [di sini](https://penerbitdeepublish.com/menulis-buku-membuat-sitasi-dengan-mudah/)
-- Sumber yang bisa digunakan [Scholar](https://scholar.google.com/)
+[2] D. F. Santomauro et al., “Global prevalence and burden of depressive and anxiety disorders in 204 countries and territories in 2020 due to the COVID-19 pandemic,” The Lancet, vol. 398, no. 10312, pp. 1700–1712, Nov. 2021.
+
+[3] A. Islam, A. M. Iftekhar, T. Rahman, and S. Jahan, “Mental health prediction using machine learning: A survey,” ACM Computing Surveys (CSUR), vol. 55, no. 2, pp. 1–36, 2022.
+
+[4] N. M. van der Velden et al., “Anxiety and depression symptoms, and lack of emotional support among the general population before and during the COVID-19 pandemic. A prospective national study on prevalence and risk factors,” Journal of Affective Disorders, vol. 277, pp. 540–548, Jan. 2021.
+
+[5] S. E. McGinty, E. Presskreischer, H. Han, and C. Niederdeppe, “Psychological distress and COVID-19–related stressors reported in a longitudinal cohort of US adults in 2020,” JAMA, vol. 324, no. 24, pp. 2555–2557, Dec. 2020.
 
 ## Business Understanding
 
