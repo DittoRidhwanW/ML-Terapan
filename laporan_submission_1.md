@@ -70,6 +70,7 @@ Dataset yang digunakan diambil dari platform Kaggle yaitu, (https://www.kaggle.c
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
 ## Data Preparation
+- Drop Column : Menghapus kolom yang tidak digunakan
 - Duplicate : Menghapus data yang memiliki duplikasi agar tidak ada bias.
 - Missing Values : Melakukan penanganan data yang hilang, bisa dengan manghapus datanya atau juga bisa dengan teknik imputasi menggunakan nilai mean, median atau modus.
 - Encoding : Melakukan transformasi data dengan mengubah nilai setiap kategori ke dalam bentuk numerik.
