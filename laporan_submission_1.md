@@ -79,17 +79,25 @@ Pada tahap ini, beberapa algoritma klasifikasi machine learning digunakan untuk 
 
 1. Decision Tree
    - Kelebihan
+
      a. Mudah diinterpretasikan dan divisualisasikan
+     
      b. Bisa menangani fitur numerik dan kategorikal
+     
    - Kekurangan
      a. Rentan terhadap overfitting jika tidak dilakukan pruning
+     
 2. Random Forest
    - Kelebihan
      a. Akurasi yang lebih tinggi daripada decision tree tunggal
+     
      b. Lebih tahan terhadap overfitting
+     
      c. Memberikan feature importance
+     
    - Kekurangan
      a. Kurang interpretatif dibanding decision tree tunggal
+     
      b. Sedikit lebih lama dalam pelatihan
 
 ## Hyperparameter Tuning
@@ -105,6 +113,7 @@ Melakukan tuning pada model yang memiliki akurasi terbaik menggunakan metode Gri
 Untuk memahami pengaruh setiap fitur terhadap hasil prediksi, proyek ini menggunakan pendekatan interpretabilitas model berbasis SHAP (SHapley Additive exPlanations).
 
 SHAP merupakan metode berbasis teori permainan (game theory) yang memberikan penjelasan kuantitatif terhadap kontribusi setiap fitur dalam prediksi model. SHAP menghitung nilai kontribusi setiap fitur dengan mempertimbangkan semua kemungkinan kombinasi fitur yang mungkin.
+
 a. Alasan Menggunakan SHAP
  - Memberikan penjelasan yang akurat dan konsisten terhadap kontribusi fitur.
  - Menjelaskan pengaruh fitur secara global (keseluruhan dataset) dan lokal (prediksi individu).
