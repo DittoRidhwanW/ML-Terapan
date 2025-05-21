@@ -49,7 +49,7 @@ Menjelaskan tujuan dari pernyataan masalah:
 ## Data Understanding
 Dataset yang digunakan diambil dari platform Kaggle yaitu, (https://www.kaggle.com/datasets/bhavikjikadara/mental-health-dataset) yang memiliki 17 kolom dimana 16 kolom fitur dan 1 kolom target.
 
-### Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
+### Variabel-variabel pada Mental Health dataset adalah sebagai berikut:
 - Timestamp : waktu responden submit pengisian survey
 - Gender : jenis kelamin
 - Country : asal negara responden
