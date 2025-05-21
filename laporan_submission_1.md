@@ -25,72 +25,89 @@ Dataset  yang dianalisis dalam proyek ini mencerminkan berbagai kondisi sosial d
 
 ## Business Understanding
 
-Pada bagian ini, kamu perlu menjelaskan proses klarifikasi masalah.
+Kesehatan mental adalah aspek penting dalam kehidupan seseorang yang semakin mendapat perhatian luas, terutama sejak pandemi COVID-19. Banyak individu mengalami tekanan psikologis, namun tidak semuanya memiliki akses atau kesadaran untuk mendapatkan bantuan profesional. Oleh karena itu, pendekatan berbasis data sangat dibutuhkan untuk mengidentifikasi potensi gangguan kesehatan mental sejak dini, terutama melalui model berbasis machine learning.
 
-Bagian laporan ini mencakup:
+Proyek ini bertujuan untuk membantu mengidentifikasi kondisi kesehatan mental seseorang berdasarkan data survei yang memuat informasi demografi, pekerjaan, akses terhadap dukungan kesehatan mental, dan persepsi pribadi mereka terhadap isu ini. Dengan pemodelan yang tepat, sistem prediktif ini dapat dimanfaatkan oleh lembaga pendidikan, perusahaan, atau institusi kesehatan untuk memberikan intervensi lebih dini dan tepat sasaran.
 
 ### Problem Statements
 
 Menjelaskan pernyataan masalah latar belakang:
-- Pernyataan Masalah 1
-- Pernyataan Masalah 2
-- Pernyataan Masalah n
+- Banyak individu dengan potensi gangguan kesehatan mental tidak terdeteksi secara dini, baik karena keterbatasan akses terhadap layanan psikologis maupun kurangnya kesadaran individu terhadap kondisi mereka sendiri.
+- Belum ada pendekatan otomatis dan berbasis data yang secara efisien memanfaatkan informasi latar belakang individu untuk memprediksi kemungkinan mereka mengalami gangguan kesehatan mental.
 
 ### Goals
 
 Menjelaskan tujuan dari pernyataan masalah:
-- Jawaban pernyataan masalah 1
-- Jawaban pernyataan masalah 2
-- Jawaban pernyataan masalah n
+- Mengembangkan model klasifikasi berbasis machine learning yang mampu memprediksi apakah seseorang kemungkinan besar memerlukan perawatan kesehatan mental atau tidak, berdasarkan atribut survei yang diberikan.
+- Mengidentifikasi fitur-fitur penting yang memengaruhi status kesehatan mental individu.
 
-Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
-
-    ### Solution statements
-    - Mengajukan 2 atau lebih solution statement. Misalnya, menggunakan dua atau lebih algoritma untuk mencapai solusi yang diinginkan atau melakukan improvement pada baseline model dengan hyperparameter tuning.
-    - Solusi yang diberikan harus dapat terukur dengan metrik evaluasi.
+### Solution statements
+- Mengimplementasikan dan membandingkan kinerja beberapa model klasifikasi untuk menemukan model terbaik.
+- Melakukan hyperparameter tuning pada model dengan performa terbaik untuk mengoptimalkan hasil klasifikasi dan meningkatkan akurasi prediksi.
+- Menggunakan metode interpretabilitas seperti feature importance atau SHAP analysis untuk mengetahui fitur apa yang paling berdampak terhadap prediksi dan dapat dijadikan dasar dalam kebijakan intervensi.
 
 ## Data Understanding
-Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
-
-Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
+Dataset yang digunakan diambil dari platform Kaggle yaitu, (https://www.kaggle.com/datasets/bhavikjikadara/mental-health-dataset) yang memiliki 17 kolom dimana 16 kolom fitur dan 1 kolom target.
 
 ### Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
-- accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
-- cuisine : merupakan jenis masakan yang disajikan pada restoran.
-- dst
+- Timestamp : waktu responden submit pengisian survey
+- Gender : jenis kelamin
+- Country : asal negara responden
+- Occupation : pekerjaan responden
+- self_employed : apakah responden merupakan wiraswasta / pekerja mandiri
+- family_history : apakah responden memiliki riwayat keluarga dengan penyakit mental
+- treatment : apakah responden sudah pernah melakukan treatment terkait kesehatan mental
+- Days_indoors : berapa lama kegiatan diluar
+- Growing_Stress : apakah ada peningkatan terkait stress
+- Change_Habits : apakah ada perubahan kebiasaan yang dilakukan
+- Mental_Health_History : apakah responden memiliki masalah kesehatan mental sebelumnya
+- Mood_Swings : tingkatn perubahan mood responden
+- Coping_Struggles : apakah responden dapat menangani kesulitan
+- Work_Interest : apakah responden memiliki ketertarikan dalam bekerja
+- Social_Weakness : apakah responden memiliki kelemahan dalam sosial
+- mental_health_interview : apakah responden akan mengungkapkan masalah kesehatan mental kepada HR dalam sebuah interview kerja
+- care_options : prediksi apakah responden membutuhkan penanganan kesehatan mental atau tidak
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
-
 ## Data Preparation
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
-
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+- Duplicate : Menghapus data yang memiliki duplikasi agar tidak ada bias.
+- Missing Values : Melakukan penanganan data yang hilang, bisa dengan manghapus datanya atau juga bisa dengan teknik imputasi menggunakan nilai mean, median atau modus.
+- Encoding : Melakukan transformasi data dengan mengubah nilai setiap kategori ke dalam bentuk numerik.
 
 ## Modeling
-Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
+Pada tahap ini, beberapa algoritma klasifikasi machine learning digunakan untuk memprediksi apakah seseorang membutuhkan penanganan kesehatan mental atau tidak berdasarkan data survei yang telah disiapkan.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
-- Jika menggunakan satu algoritma pada solution statement, lakukan proses improvement terhadap model dengan hyperparameter tuning. **Jelaskan proses improvement yang dilakukan**.
-- Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. **Jelaskan mengapa memilih model tersebut sebagai model terbaik**.
+1. Decision Tree
+   - Kelebihan
+     a. Mudah diinterpretasikan dan divisualisasikan
+     b. Bisa menangani fitur numerik dan kategorikal
+   - Kekurangan
+     a. Rentan terhadap overfitting jika tidak dilakukan pruning
+2. Random Forest
+   - Kelebihan
+     a. Akurasi yang lebih tinggi daripada decision tree tunggal
+     b. Lebih tahan terhadap overfitting
+     c. Memberikan feature importance
+   - Kekurangan
+     a. Kurang interpretatif dibanding decision tree tunggal
+     b. Sedikit lebih lama dalam pelatihan
+
+## Hyperparameter Tuning
+Melakukan tuning pada model yang memiliki akurasi terbaik menggunakan metode GrisSearch yang dimana metode tersebut akan mengecek semua parameter untuk memilih best parameter.
 
 ## Evaluation
-Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
+1. Akurasi : Mengukur proporsi prediksi yang benar dari keseluruhan prediksi.
+2. Precision : Mengukur proporsi prediksi positif yang benar-benar positif.
+3. Recall (Sensitivity) : Mengukur seberapa baik model dapat mendeteksi kasus positif.
+4. F1-Score : Harmonik rata-rata dari precision dan recall. Cocok untuk data tidak seimbang.
 
-Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik **akurasi, precision, recall, dan F1 score**. Jelaskan mengenai beberapa hal berikut:
-- Penjelasan mengenai metrik yang digunakan
-- Menjelaskan hasil proyek berdasarkan metrik evaluasi
+## Interpretabilitas Model dengan SHAP
+Untuk memahami pengaruh setiap fitur terhadap hasil prediksi, proyek ini menggunakan pendekatan interpretabilitas model berbasis SHAP (SHapley Additive exPlanations).
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
-
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+SHAP merupakan metode berbasis teori permainan (game theory) yang memberikan penjelasan kuantitatif terhadap kontribusi setiap fitur dalam prediksi model. SHAP menghitung nilai kontribusi setiap fitur dengan mempertimbangkan semua kemungkinan kombinasi fitur yang mungkin.
+a. Alasan Menggunakan SHAP
+ - Memberikan penjelasan yang akurat dan konsisten terhadap kontribusi fitur.
+ - Menjelaskan pengaruh fitur secara global (keseluruhan dataset) dan lokal (prediksi individu).
 
 **---Ini adalah bagian akhir laporan---**
 
