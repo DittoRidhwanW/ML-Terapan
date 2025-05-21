@@ -85,10 +85,12 @@ Pada tahap ini, beberapa algoritma klasifikasi machine learning digunakan untuk 
      b. Bisa menangani fitur numerik dan kategorikal
      
    - Kekurangan
+     
      a. Rentan terhadap overfitting jika tidak dilakukan pruning
      
 2. Random Forest
    - Kelebihan
+     
      a. Akurasi yang lebih tinggi daripada decision tree tunggal
      
      b. Lebih tahan terhadap overfitting
