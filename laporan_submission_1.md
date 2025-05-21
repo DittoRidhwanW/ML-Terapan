@@ -68,11 +68,10 @@ Dataset yang digunakan diambil dari platform Kaggle yaitu, (https://www.kaggle.c
 - mental_health_interview : apakah responden akan mengungkapkan masalah kesehatan mental kepada HR dalam sebuah interview kerja
 - care_options : prediksi apakah responden membutuhkan penanganan kesehatan mental atau tidak
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
 ## Data Preparation
-- Drop Column : Menghapus kolom yang tidak digunakan
-- Duplicate : Menghapus data yang memiliki duplikasi agar tidak ada bias.
 - Missing Values : Melakukan penanganan data yang hilang, bisa dengan manghapus datanya atau juga bisa dengan teknik imputasi menggunakan nilai mean, median atau modus.
+- Duplicate : Menghapus data yang memiliki duplikasi agar tidak ada bias.
+- Drop Column : Menghapus kolom yang tidak digunakan
 - Encoding : Melakukan transformasi data dengan mengubah nilai setiap kategori ke dalam bentuk numerik.
 
 ## Modeling
@@ -106,12 +105,6 @@ Pada tahap ini, beberapa algoritma klasifikasi machine learning digunakan untuk 
 ## Hyperparameter Tuning
 Melakukan tuning pada model yang memiliki akurasi terbaik menggunakan metode GrisSearch yang dimana metode tersebut akan mengecek semua parameter untuk memilih best parameter.
 
-## Evaluation
-1. Akurasi : Mengukur proporsi prediksi yang benar dari keseluruhan prediksi.
-2. Precision : Mengukur proporsi prediksi positif yang benar-benar positif.
-3. Recall (Sensitivity) : Mengukur seberapa baik model dapat mendeteksi kasus positif.
-4. F1-Score : Harmonik rata-rata dari precision dan recall. Cocok untuk data tidak seimbang.
-
 ## Interpretabilitas Model dengan SHAP
 Untuk memahami pengaruh setiap fitur terhadap hasil prediksi, proyek ini menggunakan pendekatan interpretabilitas model berbasis SHAP (SHapley Additive exPlanations).
 
@@ -121,6 +114,11 @@ a. Alasan Menggunakan SHAP
  - Memberikan penjelasan yang akurat dan konsisten terhadap kontribusi fitur.
  - Menjelaskan pengaruh fitur secara global (keseluruhan dataset) dan lokal (prediksi individu).
 
+## Evaluation
+1. Akurasi : Mengukur proporsi prediksi yang benar dari keseluruhan prediksi.
+2. Precision : Mengukur proporsi prediksi positif yang benar-benar positif.
+3. Recall (Sensitivity) : Mengukur seberapa baik model dapat mendeteksi kasus positif.
+4. F1-Score : Harmonik rata-rata dari precision dan recall. Cocok untuk data tidak seimbang.
 **---Ini adalah bagian akhir laporan---**
 
 _Catatan:_
