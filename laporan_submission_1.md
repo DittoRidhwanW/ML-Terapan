@@ -1,4 +1,4 @@
-# Laporan Proyek Machine Learning - Ditto Ridhwan Wibowo
+![image](https://github.com/user-attachments/assets/a79d2bcd-c47d-4237-8264-bb28492f8726)# Laporan Proyek Machine Learning - Ditto Ridhwan Wibowo
 
 ## Domain Proyek
 
@@ -69,15 +69,17 @@ Dataset yang digunakan diambil dari platform Kaggle yaitu, (https://www.kaggle.c
 - care_options : prediksi apakah responden membutuhkan penanganan kesehatan mental atau tidak
 
 ## Data Preparation
-- Missing Values : Melakukan penanganan data yang hilang, bisa dengan manghapus datanya atau juga bisa dengan teknik imputasi menggunakan nilai mean, median atau modus.
-- Duplicate : Menghapus data yang memiliki duplikasi agar tidak ada bias.
+- Missing Values : Melakukan penanganan pada data yang hilang, pada proyek ini hal yang akan dilakukan untuk menangani data yang hilang adalah dengan menggunakan teknik imputasi yaitu modus, karena dataset tersebut bertipe kategorikal sehingga tidak bisa menggunakan nilai mean atau median. 
+- Duplicate : Menghapus data yang memiliki duplikasi agar tidak ada bias data dan tidak mengalami overfitting pada saat evaluasi model.
 - Drop Column : Menghapus kolom yang tidak digunakan
-- Encoding : Melakukan transformasi data dengan mengubah nilai setiap kategori ke dalam bentuk numerik.
+- Encoding : Melakukan transformasi data dengan mengubah nilai setiap kategori ke dalam bentuk numerik, teknik yang akan digunakan adalah label encoding karena beberapa fitur memiliki kategori lebih dari 2.
+- Split data : Setelah melakukan cleaning data, disini akan membagi antara data latih dan data uji dengan perbandingan 80:20
 
 ## Modeling
 Pada tahap ini, beberapa algoritma klasifikasi machine learning digunakan untuk memprediksi apakah seseorang membutuhkan penanganan kesehatan mental atau tidak berdasarkan data survei yang telah disiapkan.
 
 1. Decision Tree
+   Decision Tree bekerja dengan memetakan fitur dari data ke dalam serangkaian aturan logika yang membentuk struktur pohon keputusan. Setiap node dalam pohon memisahkan data berdasarkan nilai dari suatu fitur, dan proses ini berlanjut hingga mencapai node daun yang memberikan prediksi kelas.
    - Kelebihan
 
      a. Mudah diinterpretasikan dan divisualisasikan
@@ -89,6 +91,7 @@ Pada tahap ini, beberapa algoritma klasifikasi machine learning digunakan untuk 
      a. Rentan terhadap overfitting jika tidak dilakukan pruning
      
 2. Random Forest
+   Random Forest adalah kumpulan dari banyak pohon keputusan (decision trees) yang dilatih dengan data acak dan subset fitur yang berbeda. Hasil akhir ditentukan berdasarkan voting mayoritas dari semua pohon. Pendekatan ini mengurangi varian model dan membantu menghindari overfitting.
    - Kelebihan
      
      a. Akurasi yang lebih tinggi daripada decision tree tunggal
@@ -103,7 +106,11 @@ Pada tahap ini, beberapa algoritma klasifikasi machine learning digunakan untuk 
      b. Sedikit lebih lama dalam pelatihan
 
 ## Hyperparameter Tuning
-Melakukan tuning pada model yang memiliki akurasi terbaik menggunakan metode GrisSearch yang dimana metode tersebut akan mengecek semua parameter untuk memilih best parameter.
+Melakukan tuning pada model yang memiliki akurasi terbaik menggunakan metode GridSearch yang dimana metode tersebut akan mengecek semua parameter untuk memilih best parameter. Parameter yang akan digunakan untuk memilih yang terbaik antara lain:
+- 'criterion': ['gini', 'entropy'] -> parameter ini digunakan untuk menentukan fungsi yang mengukur kualitas pemisahan (split) pada setiap node.
+- 'max_depth': [None, 10, 20, 30] -> parameter ini digunakan untul menentukan kedalaman maksimum pohon (berapa banyak level node dari akar ke daun) untuk mencegah adanya overfitting.
+- 'min_samples_split': [2, 5, 10] -> parameter ini digunakan untuk menentukan jumlah minimum sampel yang dibutuhkan untuk membagi (split) sebuah node yang nanti dapat mencegah pembentukan node yang terlalu kecil dan kurang bermakna.
+- 'min_samples_leaf': [1, 2, 4] -> parameter ini digunakan untuk menentukan jumlah minimum sampel yang harus ada di setiap node daun (leaf). Tujuannya untuk mengontrol jumlah data minimum di daun agar model lebih general.
 
 ## Interpretabilitas Model dengan SHAP
 Untuk memahami pengaruh setiap fitur terhadap hasil prediksi, proyek ini menggunakan pendekatan interpretabilitas model berbasis SHAP (SHapley Additive exPlanations).
@@ -119,9 +126,14 @@ a. Alasan Menggunakan SHAP
 2. Precision : Mengukur proporsi prediksi positif yang benar-benar positif.
 3. Recall (Sensitivity) : Mengukur seberapa baik model dapat mendeteksi kasus positif.
 4. F1-Score : Harmonik rata-rata dari precision dan recall. Cocok untuk data tidak seimbang.
-**---Ini adalah bagian akhir laporan---**
 
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
+Berikut adalah hasil akurasi dengan menggunakan model Decision Tree antara sebelum tuning dan sesudah tuning
+-> Sebelum Hyperparameter Tuning
+![image](https://github.com/user-attachments/assets/f4ed6e8f-1096-4b38-b31b-8b619ab07dfd)
 
+-> Sesudah Hyperparameter Tuning
+![image](https://github.com/user-attachments/assets/c4dbae00-2c5f-4caa-acd9-52f0c2ba36e4)
+
+Berdasarkan gambar diatas setelah mendapatkan parameter terbaiki yaitu,  {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 2, 'min_samples_split': 10} hasil akurasi pada saat menggunakan hyperparameter tuning memiliki peningkatan menjadi 59% dimana sebelum menggunakan hyperparameter tuning akurasi yang diperoleh adalah 53%. Ini menunjukkan bahwa model telah berkembang lebih akurat setelah tuning juga relevan secara bisnis, karena mampu membantu pihak-pihak terkait dalam mengenali individu yang membutuhkan perhatian lebih sejak dini. 
+
+![confusion matrix](https://github.com/user-attachments/assets/cecbbb9d-94a7-4ba7-924a-ea93a86c9b3f)
