@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/a79d2bcd-c47d-4237-8264-bb28492f8726)# Laporan Proyek Machine Learning - Ditto Ridhwan Wibowo
+# Laporan Proyek Machine Learning - Ditto Ridhwan Wibowo
 
 ## Domain Proyek
 
