@@ -128,6 +128,7 @@ a. Alasan Menggunakan SHAP
 4. F1-Score : Harmonik rata-rata dari precision dan recall. Cocok untuk data tidak seimbang.
 
 Berikut adalah hasil akurasi dengan menggunakan model Decision Tree antara sebelum tuning dan sesudah tuning
+
 -> Sebelum Hyperparameter Tuning
 
 ![image](https://github.com/user-attachments/assets/f4ed6e8f-1096-4b38-b31b-8b619ab07dfd)
