@@ -129,9 +129,11 @@ a. Alasan Menggunakan SHAP
 
 Berikut adalah hasil akurasi dengan menggunakan model Decision Tree antara sebelum tuning dan sesudah tuning
 -> Sebelum Hyperparameter Tuning
+
 ![image](https://github.com/user-attachments/assets/f4ed6e8f-1096-4b38-b31b-8b619ab07dfd)
 
 -> Sesudah Hyperparameter Tuning
+
 ![image](https://github.com/user-attachments/assets/c4dbae00-2c5f-4caa-acd9-52f0c2ba36e4)
 
 Berdasarkan gambar diatas setelah mendapatkan parameter terbaiki yaitu,  {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 2, 'min_samples_split': 10} hasil akurasi pada saat menggunakan hyperparameter tuning memiliki peningkatan menjadi 59% dimana sebelum menggunakan hyperparameter tuning akurasi yang diperoleh adalah 53%. Ini menunjukkan bahwa model telah berkembang lebih akurat setelah tuning juga relevan secara bisnis, karena mampu membantu pihak-pihak terkait dalam mengenali individu yang membutuhkan perhatian lebih sejak dini. 
