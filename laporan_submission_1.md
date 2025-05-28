@@ -47,7 +47,7 @@ Menjelaskan tujuan dari pernyataan masalah:
 - Menggunakan metode interpretabilitas seperti feature importance atau SHAP analysis untuk mengetahui fitur apa yang paling berdampak terhadap prediksi dan dapat dijadikan dasar dalam kebijakan intervensi.
 
 ## Data Understanding
-Dataset yang digunakan diambil dari platform Kaggle yaitu, (https://www.kaggle.com/datasets/bhavikjikadara/mental-health-dataset) yang memiliki 17 kolom dimana 16 kolom fitur dan 1 kolom target.
+Dataset yang digunakan diambil dari platform Kaggle yaitu, (https://www.kaggle.com/datasets/bhavikjikadara/mental-health-dataset) yang memiliki 292,364 baris serta 17 kolom dimana 16 kolom fitur dan 1 kolom target.
 
 ### Variabel-variabel pada Mental Health dataset adalah sebagai berikut:
 - Timestamp : waktu responden submit pengisian survey
@@ -67,6 +67,8 @@ Dataset yang digunakan diambil dari platform Kaggle yaitu, (https://www.kaggle.c
 - Social_Weakness : apakah responden memiliki kelemahan dalam sosial
 - mental_health_interview : apakah responden akan mengungkapkan masalah kesehatan mental kepada HR dalam sebuah interview kerja
 - care_options : prediksi apakah responden membutuhkan penanganan kesehatan mental atau tidak
+
+Dari dataset tersebut ditemukan data yang hilang sebanyak 5,202 baris dan data yang duplikat sebanyak 2,313 baris, sehingga hal tersebut perlu ditangani agar data dapat digunakan untuk klasifikasi.
 
 ## Data Preparation
 - Missing Values : Melakukan penanganan pada data yang hilang, pada proyek ini hal yang akan dilakukan untuk menangani data yang hilang adalah dengan menggunakan teknik imputasi yaitu modus, karena dataset tersebut bertipe kategorikal sehingga tidak bisa menggunakan nilai mean atau median. 
@@ -127,6 +129,19 @@ a. Alasan Menggunakan SHAP
 3. Recall (Sensitivity) : Mengukur seberapa baik model dapat mendeteksi kasus positif.
 4. F1-Score : Harmonik rata-rata dari precision dan recall. Cocok untuk data tidak seimbang.
 
+
+Setelah dilakukan training pada model Decision Tree dan Random Forest diperoleh perbandingan akurasi, seperti pada gambar dibawah:
+
+### -> Decision Tree
+
+![image](https://github.com/user-attachments/assets/4ff6ada6-45b8-4f36-9610-5774d8f6b981)
+
+### -> Random Forest
+
+![image](https://github.com/user-attachments/assets/3530c072-54b0-4e9c-9232-53d72108f5e4)
+
+Berdasarkan gambar diatas jika dibandingkan hasil akurasi antara Decision Tree dan Random Forest, model Decision Tree memiliki akurasi lebih tinggi sekitar 53%, sedangkan Random Forest memiliki akurasi sekitar 52%. Untuk itu, pada klasifikasi ini model yang digunakan adalah Decision Tree dimana model tersebut akan digunakan juga untuk perbandingan dengan menggunakan hyperparameter tuning.
+
 Berikut adalah hasil akurasi dengan menggunakan model Decision Tree antara sebelum tuning dan sesudah tuning
 
 -> Sebelum Hyperparameter Tuning
@@ -140,3 +155,7 @@ Berikut adalah hasil akurasi dengan menggunakan model Decision Tree antara sebel
 Berdasarkan gambar diatas setelah mendapatkan parameter terbaiki yaitu,  {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 2, 'min_samples_split': 10} hasil akurasi pada saat menggunakan hyperparameter tuning memiliki peningkatan menjadi 59% dimana sebelum menggunakan hyperparameter tuning akurasi yang diperoleh adalah 53%. Ini menunjukkan bahwa model telah berkembang lebih akurat setelah tuning juga relevan secara bisnis, karena mampu membantu pihak-pihak terkait dalam mengenali individu yang membutuhkan perhatian lebih sejak dini. 
 
 ![confusion matrix](https://github.com/user-attachments/assets/cecbbb9d-94a7-4ba7-924a-ea93a86c9b3f)
+
+# Kesimpulan
+
+Berdasarkan hasil klasifikasi dengan menggunakan model Decision Tree mendapatkan akurasi sebesar 59%, walaupun akurasi tersebut meningkat setelah menggunakan hyperparameter tuning model tersebut masih kurang dalam melakukan klasifikasi kesehatan mental karena masih terdapat beberapa kesalahan dalam melakukan klasifikasi yang tidak sesuai (dapat dilihat pada hasil confusion matrix). Dalam menganalisis kontribusi fitur dalam klasifikasi teknik SHAP merupakan salah satu teknik yang dapat digunakan, karena dengan teknik tersebut kita dapat mengetahui fitur mana saja yang memiliki nilai kontribusi tertinggi dan hal tersebut dapat dimanfaatkan sebagai penggunaan untuk pemilihan fitur.
