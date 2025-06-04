@@ -45,18 +45,108 @@ Sistem ini dapat digunakan oleh platform pariwisata, aplikasi perjalanan, maupun
    - Menggunakan interaksi pengguna-destinasi (rating atau kunjungan) untuk membangun sistem rekomendasi berdasarkan preferensi pengguna lain yang serupa.
 
 ## Data Understanding
+Pada dataset tourism ini terdapat 3 file yaitu tourism_data, user_rating_data dan place_ratings_data dengan masing-masing deskripsi sebagai berikut:
+1. tourism_with_id
 
+   Dataset ini memiliki 437 baris dengan 13 kolom dimana terdapat missing value pada kolom Time_Minutes sebanyak 232 baris dan kolom Unnamed 11 sebanyak 437. Untuk itu hal yang akan dilakukan adala menghapus kolom Time_Minutes, Unnamed 11 dan Unnamed 12 karena kolom-kolom tersebut tidak akan digunakan. Berikut detail atributnya:
+   * Place_Id = Id dari tempat wisata
+   * Place_name = nama tempat wisata
+   * Description = Deskripsi tempat wisata
+   * Category = kategori tempat wisata
+   * City = kota dari tempat wisata
+   * Price = harga tempat wisata
+   * Rating = rating tempat wisata
+   * coordinate = titik koordinat tempat wisata
+   * Lat = garis lintang tempat wisata
 
+2. user
+   Dataset ini memiliki 300 baris dengan 3 kolom dimana dataset ini tidak ada missing value. Berikut detail atributnya:
+   * User_Id = id dari user
+   * Location = lokasi tempat tinggal user
+   * Age = usia user
+    
+3. tourism_rating
+   * User_Id = id dari user
+   * Place_Id = id dari tempat wisata
+   * Place_Ratings = rating dari tempat wisata
+  
+### Distribusi
+![download](https://github.com/user-attachments/assets/e61cc4d4-5830-4122-81b6-bf31984fdde6)
+
+Insight: Berdasarkan distribusi rating tempat, rata-rata rating yang diberikan oleh user tidak jauh dari 3 atau 4 sebanyak 2000+. Ini mengindikasikan bahwa wisata di Indonesia sangat direkomendasikan untuk dikunjungi oleh wisatawan.
+
+![download](https://github.com/user-attachments/assets/b9bfe469-159a-4323-83ca-c5493adf8d25)
+
+Insight: Berdasarkan hasil distribusi kota yang paling banyak dikunjungi adalah Kota Yogyakarta, diikuti dengan Kota Bandung. Hal ini dapat dilihat dari banyaknya tempat wisata dari kedua kota tersebut, sehingga banyak wisatawan yang datang kesana.
+
+![download](https://github.com/user-attachments/assets/6639f75a-9514-4a41-9303-ee7e7c9e2056)
+
+Insight: Dari hasil distribusi usia, wisatawan yang sering berkunjung terbanyak ada pada kisaran usia 30 tahun sebanyak 35+ wisatawan. Sedangkan untuk rentang usia 17+ dan 30+ juga tidak terlalu banyak dan tidak terlalu sedikit juga yaitu berada dibawah 30 wisatawan.
 
 
 ## Data Preparation
+Tahap yang dilakukan adalah menghapus kolom yang memiliki missing value dan menghapus kolom yang tidak digunakan, dimana terdapat missing value pada kolom Time_Minutes sebanyak 232 baris dan kolom Unnamed 11 sebanyak 437. Untuk itu hal yang akan dilakukan adala menghapus kolom Time_Minutes, Unnamed 11 dan Unnamed 12 karena kolom-kolom tersebut tidak akan digunakan.
+
+![image](https://github.com/user-attachments/assets/1bbd04ae-2919-4c7d-91d8-0e06a98b3e17)
 
 
 ## Modeling
+1. Content Based Filtering
+![image](https://github.com/user-attachments/assets/1e80bcf6-1a70-4a74-ac0f-f6f120f0d9a9)
 
+Hasil ini menunjukkan proses dan hasil dari sistem rekomendasi berbasis konten (content-based recommendation system) yang diterapkan pada dataset destinasi wisata di Indonesia. Sistem ini dirancang untuk merekomendasikan tempat-tempat wisata yang mirip berdasarkan deskripsi atau fitur tekstual lainnya dari masing-masing tempat.
+
+Dalam implementasinya:
+
+Dataset yang digunakan memiliki 437 entri (baris) dan 15 fitur yang telah direpresentasikan dalam bentuk matriks TF-IDF dengan shape (437, 15). TF-IDF (Term Frequency-Inverse Document Frequency) digunakan untuk mengubah data teks menjadi representasi numerik yang mencerminkan kepentingan kata-kata tertentu dalam konteks seluruh dataset.
+
+Setelah itu, dihitung cosine similarity antar semua entri, menghasilkan matriks berukuran (437, 437) yang menunjukkan tingkat kemiripan antara satu tempat wisata dengan tempat lainnya berdasarkan nilai TF-IDF mereka.
+
+Sistem kemudian mengambil input berupa salah satu tempat wisata, yaitu 'Candi Prambanan', dan mencari 10 tempat wisata lain yang memiliki nilai kemiripan tertinggi (paling mirip secara konten) dengan tempat tersebut.
+
+2. Collaborative Filtering
+   ![image](https://github.com/user-attachments/assets/351a1a7b-57a7-45d3-bebc-262d34bc30b9)
+
+   Sistem rekomendasi ini menggunakan pendekatan Collaborative Filtering, yaitu memberikan rekomendasi berdasarkan pola interaksi pengguna dengan item (dalam hal ini: destinasi wisata) — bukan berdasarkan konten item itu sendiri. Dengan menggunakan 2 pendekatan yaitu SVD dan KNN Item_Based Model
+
+📈 Evaluasi Model RMSE (Root Mean Squared Error) digunakan sebagai metrik evaluasi untuk mengukur seberapa baik model dalam memprediksi rating/penilaian yang diberikan pengguna terhadap destinasi wisata.
+
+Hasil evaluasi:
+
+SVD Model (Singular Value Decomposition) menghasilkan RMSE sebesar 1.4119.
+
+KNN Item-Based Model (berbasis kemiripan antar item) menghasilkan RMSE yang lebih baik yaitu 1.3954, yang berarti model ini sedikit lebih akurat dalam memprediksi preferensi pengguna.
 
 
 ## Evaluation
+1. Content Based Filtering
+![image](https://github.com/user-attachments/assets/d5d254c4-bef7-41dd-ab25-b22d183e3af0)
+
+Sistem rekomendasi ini menggunakan pendekatan Content-Based Filtering, yaitu merekomendasikan destinasi wisata yang memiliki kemiripan konten dengan destinasi yang disukai pengguna. Kemiripan dihitung berdasarkan fitur tekstual seperti nama tempat, kategori (Category), kota (City), dan atribut lainnya yang telah direpresentasikan ke dalam matriks TF-IDF.
+
+🔍 Analisis Hasil:
+
+Skor Similarity = 1.0 Destinasi seperti Pulau Tidung, Pulau Bidadari, Pantai Ancol, dll., memiliki kesamaan sempurna (skor 1.0) dengan input yang digunakan untuk evaluasi. Ini berarti fitur-fitur tekstual mereka (nama, kategori Bahari, kota Jakarta, dll.) sangat identik atau sangat mirip. Artinya, sistem berhasil mengelompokkan destinasi bahari di Jakarta secara tepat.
+
+Skor Similarity = 0.63375 Destinasi seperti Pantai Goa Cemara atau Pantai Kukup juga termasuk dalam kategori Bahari, tetapi berasal dari kota yang berbeda (Yogyakarta). Ini menyebabkan skor kemiripan yang lebih rendah, namun tetap dianggap relevan. Sistem mampu mengenali bahwa meskipun lokasi berbeda, destinasi ini masih dalam kategori wisata air/bahari.
+
+
+2. Collaborative Filtering
+   ![image](https://github.com/user-attachments/assets/9708de81-7e22-46cb-b7cb-9ed04a4186ef)
+
+   Sistem ini memprediksi ketertarikan pengguna terhadap tempat wisata berdasarkan interaksi historis pengguna lainnya, tanpa melihat konten destinasi secara langsung. Dua pendekatan utama yang digunakan:
+
+SVD (Singular Value Decomposition) – memetakan user dan item ke dalam vektor laten untuk memperkirakan rating.
+
+KNN Item-Based – menggunakan kemiripan antar item berdasarkan rating pengguna untuk memberikan rekomendasi.
+
+📏 Evaluasi Performa Model Dengan menggunakan SVD didapatkan hasil RMSE 1.4119 dan MAE 1.2143, sedangkan dengan menggunakan KNN Item-Based didapatkan hasil RMSE 1.3954 dan MAE 1.2016
+
+RMSE (Root Mean Squared Error): Mengukur rata-rata kesalahan kuadrat antara rating prediksi dan rating aktual.
+
+MAE (Mean Absolute Error): Mengukur rata-rata kesalahan absolut prediksi.
+
+📌 KNN Item-Based sedikit lebih baik dari SVD berdasarkan kedua metrik tersebut, meskipun selisihnya kecil.
 
 
 # Kesimpulan
