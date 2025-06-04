@@ -69,6 +69,8 @@ Pada dataset tourism ini terdapat 3 file yaitu tourism_data, user_rating_data da
    * User_Id = id dari user
    * Place_Id = id dari tempat wisata
    * Place_Ratings = rating dari tempat wisata
+
+Link Dataset : https://www.kaggle.com/datasets/aprabowo/indonesia-tourism-destination
   
 ### Distribusi
 ![download](https://github.com/user-attachments/assets/e61cc4d4-5830-4122-81b6-bf31984fdde6)
