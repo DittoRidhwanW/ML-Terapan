@@ -92,6 +92,7 @@ Tahap yang dilakukan adalah menghapus kolom yang memiliki missing value dan meng
 
 ## Modeling
 1. Content Based Filtering
+   
 ![image](https://github.com/user-attachments/assets/1e80bcf6-1a70-4a74-ac0f-f6f120f0d9a9)
 
 Hasil ini menunjukkan proses dan hasil dari sistem rekomendasi berbasis konten (content-based recommendation system) yang diterapkan pada dataset destinasi wisata di Indonesia. Sistem ini dirancang untuk merekomendasikan tempat-tempat wisata yang mirip berdasarkan deskripsi atau fitur tekstual lainnya dari masing-masing tempat.
@@ -105,6 +106,7 @@ Setelah itu, dihitung cosine similarity antar semua entri, menghasilkan matriks 
 Sistem kemudian mengambil input berupa salah satu tempat wisata, yaitu 'Candi Prambanan', dan mencari 10 tempat wisata lain yang memiliki nilai kemiripan tertinggi (paling mirip secara konten) dengan tempat tersebut.
 
 2. Collaborative Filtering
+   
    ![image](https://github.com/user-attachments/assets/351a1a7b-57a7-45d3-bebc-262d34bc30b9)
 
    Sistem rekomendasi ini menggunakan pendekatan Collaborative Filtering, yaitu memberikan rekomendasi berdasarkan pola interaksi pengguna dengan item (dalam hal ini: destinasi wisata) — bukan berdasarkan konten item itu sendiri. Dengan menggunakan 2 pendekatan yaitu SVD dan KNN Item_Based Model
@@ -120,6 +122,7 @@ KNN Item-Based Model (berbasis kemiripan antar item) menghasilkan RMSE yang lebi
 
 ## Evaluation
 1. Content Based Filtering
+   
 ![image](https://github.com/user-attachments/assets/d5d254c4-bef7-41dd-ab25-b22d183e3af0)
 
 Sistem rekomendasi ini menggunakan pendekatan Content-Based Filtering, yaitu merekomendasikan destinasi wisata yang memiliki kemiripan konten dengan destinasi yang disukai pengguna. Kemiripan dihitung berdasarkan fitur tekstual seperti nama tempat, kategori (Category), kota (City), dan atribut lainnya yang telah direpresentasikan ke dalam matriks TF-IDF.
@@ -132,23 +135,32 @@ Skor Similarity = 0.63375 Destinasi seperti Pantai Goa Cemara atau Pantai Kukup 
 
 
 2. Collaborative Filtering
+   
    ![image](https://github.com/user-attachments/assets/9708de81-7e22-46cb-b7cb-9ed04a4186ef)
 
    Sistem ini memprediksi ketertarikan pengguna terhadap tempat wisata berdasarkan interaksi historis pengguna lainnya, tanpa melihat konten destinasi secara langsung. Dua pendekatan utama yang digunakan:
 
-SVD (Singular Value Decomposition) – memetakan user dan item ke dalam vektor laten untuk memperkirakan rating.
+* SVD (Singular Value Decomposition) – memetakan user dan item ke dalam vektor laten untuk memperkirakan rating.
 
-KNN Item-Based – menggunakan kemiripan antar item berdasarkan rating pengguna untuk memberikan rekomendasi.
+* KNN Item-Based – menggunakan kemiripan antar item berdasarkan rating pengguna untuk memberikan rekomendasi.
 
 📏 Evaluasi Performa Model Dengan menggunakan SVD didapatkan hasil RMSE 1.4119 dan MAE 1.2143, sedangkan dengan menggunakan KNN Item-Based didapatkan hasil RMSE 1.3954 dan MAE 1.2016
 
-RMSE (Root Mean Squared Error): Mengukur rata-rata kesalahan kuadrat antara rating prediksi dan rating aktual.
+* RMSE (Root Mean Squared Error): Mengukur rata-rata kesalahan kuadrat antara rating prediksi dan rating aktual.
 
-MAE (Mean Absolute Error): Mengukur rata-rata kesalahan absolut prediksi.
+* MAE (Mean Absolute Error): Mengukur rata-rata kesalahan absolut prediksi.
 
 📌 KNN Item-Based sedikit lebih baik dari SVD berdasarkan kedua metrik tersebut, meskipun selisihnya kecil.
 
 
 # Kesimpulan
+Proyek ini berhasil mengembangkan sistem rekomendasi destinasi wisata di Indonesia dengan dua pendekatan utama: Content-Based Filtering dan Collaborative Filtering. Sistem ini bertujuan membantu wisatawan menemukan tempat wisata yang sesuai dengan preferensi pribadi mereka, serta meningkatkan efisiensi promosi destinasi wisata lokal.
 
+Berdasarkan hasil eksperimen:
+
+1. Content-Based Filtering mampu memberikan rekomendasi yang relevan berdasarkan kemiripan atribut seperti nama tempat, deskripsi, kategori, dan kota. Sistem ini sangat efektif untuk pengguna dengan preferensi eksplisit terhadap jenis wisata tertentu. Misalnya, ketika pengguna tertarik pada destinasi bahari, sistem mampu merekomendasikan tempat lain dengan karakteristik serupa, meskipun berada di kota yang berbeda.
+
+2. Collaborative Filtering, khususnya pendekatan KNN Item-Based, menunjukkan performa evaluasi yang lebih baik dibandingkan metode SVD, dengan nilai RMSE 1.3954 dan MAE 1.2016. Ini menunjukkan bahwa pendekatan kolaboratif dapat memprediksi preferensi pengguna dengan cukup akurat berdasarkan perilaku pengguna lain yang memiliki kesamaan pola kunjungan atau rating.
+
+Secara keseluruhan, sistem rekomendasi yang dibangun dapat menjadi solusi inovatif dalam mendukung pengembangan pariwisata digital di Indonesia. Sistem ini dapat diintegrasikan ke dalam platform pariwisata atau aplikasi perjalanan untuk meningkatkan pengalaman pengguna, memperluas jangkauan destinasi lokal, dan berkontribusi terhadap pertumbuhan ekonomi daerah melalui sektor pariwisata.
 
