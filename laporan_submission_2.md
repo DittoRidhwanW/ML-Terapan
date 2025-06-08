@@ -112,7 +112,10 @@ Selanjutnya, dihitung cosine similarity antar tempat wisata menggunakan represen
 
 2. Collaborative Filtering
    
-   ![image](https://github.com/user-attachments/assets/351a1a7b-57a7-45d3-bebc-262d34bc30b9)
+   ![image](https://github.com/user-attachments/assets/8f5ce152-5ecf-4259-bdab-d8955afbbf85)
+![image](https://github.com/user-attachments/assets/003927ee-258a-40be-b4b2-d39b24d438a0)
+
+
 
    Pendekatan Collaborative Filtering digunakan untuk memprediksi preferensi pengguna berdasarkan interaksi historis antar pengguna dan tempat wisata. Dua algoritma yang digunakan adalah SVD (Singular Value Decomposition) dan KNNBasic (item-based collaborative filtering).
 
@@ -124,19 +127,48 @@ SVD Model (Singular Value Decomposition) menghasilkan RMSE sebesar 1.4119.
 
 KNN Item-Based Model (berbasis kemiripan antar item) menghasilkan RMSE yang lebih baik yaitu 1.3954, yang berarti model ini sedikit lebih akurat dalam memprediksi preferensi pengguna.
 
+Berdasarkan rekomendasi pada User_1 didapatkan hasil:
+A. Collaborative Filtering (SVD)
+
+Karakteristik:
+
+- Dominasi tempat dengan nilai budaya dan alam (Cagar Alam, Budaya).
+
+- Sebaran kota cukup beragam (Yogyakarta, Bandung, Surabaya).
+
+- Rentang harga bervariasi (gratis sampai 100.000).
+
+B. Collaborative Filtering (KNNBasic - Item-Based)
+
+Karakteristik:
+
+- Lebih fokus ke destinasi hiburan keluarga dan landmark kota.
+
+- Harga umumnya rendah atau gratis.
+
+- Penekanan lebih kuat pada kota besar populer (Jakarta, Yogyakarta, Bandung).
 
 ## Evaluation
 1. Content Based Filtering
    
-![image](https://github.com/user-attachments/assets/d5d254c4-bef7-41dd-ab25-b22d183e3af0)
+![image](https://github.com/user-attachments/assets/b3a58830-6d7e-40f0-a22c-5de68d355212)
 
-Sistem rekomendasi ini menggunakan pendekatan Content-Based Filtering, yaitu merekomendasikan destinasi wisata yang memiliki kemiripan konten dengan destinasi yang disukai pengguna. Kemiripan dihitung berdasarkan fitur tekstual seperti nama tempat, kategori (Category), kota (City), dan atribut lainnya yang telah direpresentasikan ke dalam matriks TF-IDF.
+
+Sistem rekomendasi ini menggunakan pendekatan Content-Based Filtering, yaitu merekomendasikan destinasi wisata yang memiliki kemiripan konten dengan destinasi yang disukai pengguna. 
 
 🔍 Analisis Hasil:
+1. Rekomendasi yang dihasilkan untuk Taman Impian Jaya Ancol Antara Lain:
 
-Skor Similarity = 1.0 Destinasi seperti Pulau Tidung, Pulau Bidadari, Pantai Ancol, dll., memiliki kesamaan sempurna (skor 1.0) dengan input yang digunakan untuk evaluasi. Ini berarti fitur-fitur tekstual mereka (nama, kategori Bahari, kota Jakarta, dll.) sangat identik atau sangat mirip. Artinya, sistem berhasil mengelompokkan destinasi bahari di Jakarta secara tepat.
+- ['Taman Mini Indonesia Indah (TMII)', 'Atlantis Water Adventure', 'Taman Impian Jaya Ancol', 'Ocean Ecopark', 'Kidzania']
 
-Skor Similarity = 0.63375 Destinasi seperti Pantai Goa Cemara atau Pantai Kukup juga termasuk dalam kategori Bahari, tetapi berasal dari kota yang berbeda (Yogyakarta). Ini menyebabkan skor kemiripan yang lebih rendah, namun tetap dianggap relevan. Sistem mampu mengenali bahwa meskipun lokasi berbeda, destinasi ini masih dalam kategori wisata air/bahari.
+2. Evaluasi dengan metrik:
+
+- Precision@5 = 0.80
+Ini berarti dari 5 tempat yang direkomendasikan, 4 tempat benar-benar sesuai dengan ground truth (karena satu adalah tempat input sendiri).
+Precision = jumlah rekomendasi benar / total rekomendasi = 4/5 = 0.8
+
+- Recall@5 = 0.01
+Recall sangat rendah karena ground truth tempat yang relevan sangat banyak (selain 'Taman Impian Jaya Ancol'), tapi rekomendasi hanya 5 tempat, jadi baru tertangkap sedikit sekali dari semua tempat relevan.
 
 
 2. Collaborative Filtering
