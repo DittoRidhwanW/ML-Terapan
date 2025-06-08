@@ -45,7 +45,8 @@ Sistem ini dapat digunakan oleh platform pariwisata, aplikasi perjalanan, maupun
    - Menggunakan interaksi pengguna-destinasi (rating atau kunjungan) untuk membangun sistem rekomendasi berdasarkan preferensi pengguna lain yang serupa.
 
 ## Data Understanding
-Pada dataset tourism ini terdapat 3 file yaitu tourism_data, user_rating_data dan place_ratings_data dengan masing-masing deskripsi sebagai berikut:
+Pada dataset tourism ini terdapat 3 file yaitu tourism_data, user_rating_data dan place_ratings_data yang diambil dari Kaggle dengan link sebagai berikut
+Link Dataset : https://www.kaggle.com/datasets/aprabowo/indonesia-tourism-destination
 1. tourism_with_id
 
    Dataset ini memiliki 437 baris dengan 13 kolom dimana terdapat missing value pada kolom Time_Minutes sebanyak 232 baris dan kolom Unnamed 11 sebanyak 437. Untuk itu hal yang akan dilakukan adala menghapus kolom Time_Minutes, Unnamed 11 dan Unnamed 12 karena kolom-kolom tersebut tidak akan digunakan. Berikut detail atributnya:
@@ -58,19 +59,21 @@ Pada dataset tourism ini terdapat 3 file yaitu tourism_data, user_rating_data da
    * Rating = rating tempat wisata
    * coordinate = titik koordinat tempat wisata
    * Lat = garis lintang tempat wisata
+   * Long = garis bujur tempat wisata
 
 2. user
+   
    Dataset ini memiliki 300 baris dengan 3 kolom dimana dataset ini tidak ada missing value. Berikut detail atributnya:
    * User_Id = id dari user
    * Location = lokasi tempat tinggal user
    * Age = usia user
     
 3. tourism_rating
+
+    Pada dataset place_ratings_data terdapat 10000 baris dengan 3 kolom, dalam dataset tersebut juga kondisinya sudah bersih tidak terdapat missing value. Berikut detail atributnya:
    * User_Id = id dari user
    * Place_Id = id dari tempat wisata
    * Place_Ratings = rating dari tempat wisata
-
-Link Dataset : https://www.kaggle.com/datasets/aprabowo/indonesia-tourism-destination
   
 ### Distribusi
 ![download](https://github.com/user-attachments/assets/e61cc4d4-5830-4122-81b6-bf31984fdde6)
@@ -91,27 +94,27 @@ Tahap yang dilakukan adalah menghapus kolom yang memiliki missing value dan meng
 
 ![image](https://github.com/user-attachments/assets/1bbd04ae-2919-4c7d-91d8-0e06a98b3e17)
 
+Selain itu, dilakukan juga penggabungan dua fitur, yaitu Category dan City, menjadi fitur baru bernama combined_features. Penggabungan ini bertujuan untuk mempermudah proses ekstraksi informasi kontekstual dalam metode Content-Based Filtering.
+
+Selanjutnya, dilakukan proses TF-IDF Vectorization terhadap fitur combined_features untuk mengubah data teks menjadi representasi numerik yang dapat diproses oleh algoritma machine learning. Meskipun tahap ini berkaitan erat dengan pemodelan, secara teknis TF-IDF merupakan bagian dari proses persiapan data karena mengubah bentuk representasi data sebelum masuk ke model.
+
+Terakhir, untuk kebutuhan model Collaborative Filtering, data dibagi menjadi data latih dan data uji menggunakan metode train-test split. Langkah ini penting dilakukan agar performa model dapat divalidasi dan diukur secara objektif.
+
 
 ## Modeling
 1. Content Based Filtering
    
 ![image](https://github.com/user-attachments/assets/1e80bcf6-1a70-4a74-ac0f-f6f120f0d9a9)
 
-Hasil ini menunjukkan proses dan hasil dari sistem rekomendasi berbasis konten (content-based recommendation system) yang diterapkan pada dataset destinasi wisata di Indonesia. Sistem ini dirancang untuk merekomendasikan tempat-tempat wisata yang mirip berdasarkan deskripsi atau fitur tekstual lainnya dari masing-masing tempat.
+Sistem rekomendasi berbasis konten ini dirancang untuk menyarankan destinasi wisata yang mirip berdasarkan informasi deskriptif dari setiap tempat. Setelah fitur Category dan City digabungkan menjadi combined_features, proses transformasi dilakukan menggunakan TF-IDF Vectorization.
 
-Dalam implementasinya:
-
-Dataset yang digunakan memiliki 437 entri (baris) dan 15 fitur yang telah direpresentasikan dalam bentuk matriks TF-IDF dengan shape (437, 15). TF-IDF (Term Frequency-Inverse Document Frequency) digunakan untuk mengubah data teks menjadi representasi numerik yang mencerminkan kepentingan kata-kata tertentu dalam konteks seluruh dataset.
-
-Setelah itu, dihitung cosine similarity antar semua entri, menghasilkan matriks berukuran (437, 437) yang menunjukkan tingkat kemiripan antara satu tempat wisata dengan tempat lainnya berdasarkan nilai TF-IDF mereka.
-
-Sistem kemudian mengambil input berupa salah satu tempat wisata, yaitu 'Candi Prambanan', dan mencari 10 tempat wisata lain yang memiliki nilai kemiripan tertinggi (paling mirip secara konten) dengan tempat tersebut.
+Selanjutnya, dihitung cosine similarity antar tempat wisata menggunakan representasi TF-IDF tersebut. Matriks similarity berukuran (437, 437) ini menjadi dasar pencarian tempat yang paling mirip. Contoh penerapan dilakukan dengan input 'Candi Prambanan', dan sistem merekomendasikan 10 tempat dengan tingkat kemiripan tertinggi.
 
 2. Collaborative Filtering
    
    ![image](https://github.com/user-attachments/assets/351a1a7b-57a7-45d3-bebc-262d34bc30b9)
 
-   Sistem rekomendasi ini menggunakan pendekatan Collaborative Filtering, yaitu memberikan rekomendasi berdasarkan pola interaksi pengguna dengan item (dalam hal ini: destinasi wisata) — bukan berdasarkan konten item itu sendiri. Dengan menggunakan 2 pendekatan yaitu SVD dan KNN Item_Based Model
+   Pendekatan Collaborative Filtering digunakan untuk memprediksi preferensi pengguna berdasarkan interaksi historis antar pengguna dan tempat wisata. Dua algoritma yang digunakan adalah SVD (Singular Value Decomposition) dan KNNBasic (item-based collaborative filtering).
 
 📈 Evaluasi Model RMSE (Root Mean Squared Error) digunakan sebagai metrik evaluasi untuk mengukur seberapa baik model dalam memprediksi rating/penilaian yang diberikan pengguna terhadap destinasi wisata.
 
