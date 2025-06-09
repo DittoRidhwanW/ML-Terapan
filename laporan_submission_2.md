@@ -57,6 +57,7 @@ Link Dataset : https://www.kaggle.com/datasets/aprabowo/indonesia-tourism-destin
    * City = kota dari tempat wisata
    * Price = harga tempat wisata
    * Rating = rating tempat wisata
+   * Time Minutes = Total waktu yang dihabiskan di tempat wisata
    * coordinate = titik koordinat tempat wisata
    * Lat = garis lintang tempat wisata
    * Long = garis bujur tempat wisata
@@ -90,25 +91,53 @@ Insight: Dari hasil distribusi usia, wisatawan yang sering berkunjung terbanyak 
 
 
 ## Data Preparation
-Tahap yang dilakukan adalah menghapus kolom yang memiliki missing value dan menghapus kolom yang tidak digunakan, dimana terdapat missing value pada kolom Time_Minutes sebanyak 232 baris dan kolom Unnamed 11 sebanyak 437. Untuk itu hal yang akan dilakukan adala menghapus kolom Time_Minutes, Unnamed 11 dan Unnamed 12 karena kolom-kolom tersebut tidak akan digunakan.
+1. Pra-pemrosesan Umum
+Langkah awal yang dilakukan adalah membersihkan data dari kolom-kolom yang tidak relevan atau memiliki nilai kosong (missing value) dalam jumlah besar.
+
+- Kolom Time_Minutes memiliki 232 nilai kosong.
+
+- Kolom Unnamed: 11 memiliki 437 nilai kosong.
+
+- Kolom Unnamed: 12 tidak memiliki informasi yang berguna.
+
+Ketiga kolom tersebut dihapus karena tidak digunakan dalam proses analisis lebih lanjut.
 
 ![image](https://github.com/user-attachments/assets/1bbd04ae-2919-4c7d-91d8-0e06a98b3e17)
 
-Selain itu, dilakukan juga penggabungan dua fitur, yaitu Category dan City, menjadi fitur baru bernama combined_features. Penggabungan ini bertujuan untuk mempermudah proses ekstraksi informasi kontekstual dalam metode Content-Based Filtering.
+2. Content-Based Filtering
+    Pendekatan Content-Based Filtering memerlukan representasi teks yang bermakna dari atribut destinasi. Tahapan yang dilakukan adalah sebagai berikut:
 
-Selanjutnya, dilakukan proses TF-IDF Vectorization terhadap fitur combined_features untuk mengubah data teks menjadi representasi numerik yang dapat diproses oleh algoritma machine learning. Meskipun tahap ini berkaitan erat dengan pemodelan, secara teknis TF-IDF merupakan bagian dari proses persiapan data karena mengubah bentuk representasi data sebelum masuk ke model.
+- Penyalinan Dataframe:
+    Data asli disalin ke dalam variabel baru data_content = tourism_data.copy() agar proses transformasi tidak mengubah data asli yang mungkin digunakan untuk pendekatan lain.
 
-Terakhir, untuk kebutuhan model Collaborative Filtering, data dibagi menjadi data latih dan data uji menggunakan metode train-test split. Langkah ini penting dilakukan agar performa model dapat divalidasi dan diukur secara objektif.
+- Penggabungan Fitur:
+    Dua kolom penting yaitu Category dan City digabungkan menjadi fitur baru bernama combined_features.
+Tujuannya adalah untuk menyatukan informasi kontekstual dari kategori destinasi dan lokasinya dalam satu kolom agar lebih efektif saat dilakukan ekstraksi fitur berbasis teks.
 
+- TF-IDF Vectorization:
+    Fitur combined_features kemudian diubah menjadi bentuk numerik menggunakan TF-IDF Vectorizer.
+Meskipun berhubungan erat dengan tahap pemodelan, proses ini tergolong ke dalam persiapan data karena menghasilkan representasi numerik sebelum model digunakan.
+
+3. Collaborative Filtering
+    Untuk Collaborative Filtering, pendekatan yang digunakan melibatkan interaksi antara pengguna dan item (destinasi). Proses persiapan data dilakukan sebagai berikut:
+
+- Pemuatan dan Pemformatan Data:
+    Data interaksi pengguna disiapkan menggunakan library Surprise. Langkah pertama adalah mendefinisikan format data menggunakan objek Reader, kemudian memuat data ke dalam struktur Surprise dengan Dataset.load_from_df.
+
+- Pembagian Data:
+    Setelah diformat, data dibagi menjadi data latih dan data uji menggunakan metode train-test split.
+Tahapan ini penting untuk melakukan validasi performa model Collaborative Filtering secara objektif.
 
 ## Modeling
 1. Content Based Filtering
    
 ![image](https://github.com/user-attachments/assets/1e80bcf6-1a70-4a74-ac0f-f6f120f0d9a9)
 
-Sistem rekomendasi berbasis konten ini dirancang untuk menyarankan destinasi wisata yang mirip berdasarkan informasi deskriptif dari setiap tempat. Setelah fitur Category dan City digabungkan menjadi combined_features, proses transformasi dilakukan menggunakan TF-IDF Vectorization.
+Sistem rekomendasi berbasis konten dirancang untuk menyarankan destinasi wisata yang mirip berdasarkan informasi deskriptif dari setiap tempat. Untuk membangun sistem ini, dua fitur penting yaitu Category dan City digabungkan menjadi fitur baru bernama combined_features. Fitur ini menyatukan konteks kategori dan lokasi destinasi sehingga dapat memberikan gambaran umum karakteristik setiap tempat.
 
-Selanjutnya, dihitung cosine similarity antar tempat wisata menggunakan representasi TF-IDF tersebut. Matriks similarity berukuran (437, 437) ini menjadi dasar pencarian tempat yang paling mirip. Contoh penerapan dilakukan dengan input 'Candi Prambanan', dan sistem merekomendasikan 10 tempat dengan tingkat kemiripan tertinggi.
+Untuk mengukur kemiripan antar destinasi wisata, digunakan metode Cosine Similarity. Metode ini bekerja dengan mengukur sudut antara dua vektor fitur dalam ruang multidimensi. Jika dua vektor memiliki arah yang hampir sama (sudut kecil), maka nilainya mendekati 1, menandakan bahwa dua item tersebut sangat mirip. Sebaliknya, jika sudut antar vektor besar, nilai Cosine Similarity mendekati 0, yang berarti kedua item tidak mirip.
+
+Hasil perhitungan Cosine Similarity menghasilkan matriks kemiripan berukuran (437, 437) yang menyimpan skor kemiripan antar semua destinasi. Matriks ini menjadi dasar sistem dalam memberikan rekomendasi. Misalnya, jika pengguna memilih "Candi Prambanan" sebagai referensi, maka sistem akan menampilkan 10 destinasi wisata lain yang paling mirip berdasarkan nilai kemiripan tertinggi.
 
 2. Collaborative Filtering
    
@@ -117,7 +146,7 @@ Selanjutnya, dihitung cosine similarity antar tempat wisata menggunakan represen
 
 
 
-   Pendekatan Collaborative Filtering digunakan untuk memprediksi preferensi pengguna berdasarkan interaksi historis antar pengguna dan tempat wisata. Dua algoritma yang digunakan adalah SVD (Singular Value Decomposition) dan KNNBasic (item-based collaborative filtering).
+   Pendekatan Collaborative Filtering digunakan untuk memprediksi preferensi pengguna berdasarkan riwayat interaksi antara pengguna dan tempat wisata. Tidak seperti pendekatan berbasis konten, metode ini memanfaatkan pola kesamaan preferensi antar pengguna atau antar item. Dua algoritma yang digunakan adalah SVD (Singular Value Decomposition) dan KNNBasic (item-based).
 
 📈 Evaluasi Model RMSE (Root Mean Squared Error) digunakan sebagai metrik evaluasi untuk mengukur seberapa baik model dalam memprediksi rating/penilaian yang diberikan pengguna terhadap destinasi wisata.
 
